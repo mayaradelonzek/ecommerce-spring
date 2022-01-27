@@ -10,9 +10,6 @@ import javax.validation.constraints.Size;
 
 @Embeddable
 public class Endereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
     @NotNull(message = "Rua é obrigatório")
     @NotEmpty(message = "Rua é obrigatório")
@@ -48,8 +45,7 @@ public class Endereco {
     @Deprecated
     protected Endereco() {}
 
-    public Endereco(int id, String rua, String numero, String bairro, String complemento, String cep, String cidade, String estado) {
-        this.id = id;
+    public Endereco(String rua, String numero, String bairro, String complemento, String cep, String cidade, String estado) {
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -58,10 +54,6 @@ public class Endereco {
         this.cidade = cidade;
         this.estado = estado;
         //TODO isValid();
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getRua() {
