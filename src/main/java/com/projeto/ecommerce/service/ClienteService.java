@@ -19,7 +19,6 @@ public class ClienteService {
         if (nome == null) {
             return List.of();
         }
-
         return clienteRepository.buscar(nome);
     }
 

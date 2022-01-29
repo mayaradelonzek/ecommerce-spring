@@ -17,8 +17,8 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @GetMapping(params = {"filtro"})
-    public List<Cliente> buscar(@RequestParam("nome") String nome) {
+    @GetMapping
+    public List<Cliente> buscar(@RequestParam(name = "nome") String nome) {
         return clienteService.buscar(nome);
     }
 

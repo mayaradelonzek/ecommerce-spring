@@ -18,6 +18,10 @@ public class Cliente extends Pessoa {
     @Size(max = 20, message = "CPF precisa ter no máximo 20 caracteres")
     private String cpf;
 
+    @Deprecated
+    public Cliente() {
+    }
+
     public Cliente(Long id, Contato contato, Endereco endereco, String nome, String cpf) {
         super(id, contato, endereco);
         this.nome = nome;

@@ -22,6 +22,10 @@ public abstract class Pessoa extends Entidade {
     @NotNull(message = "Endereco é obrigatório")
     protected Endereco endereco;
 
+    @Deprecated
+    public Pessoa() {
+    }
+
     public Pessoa(Long id, Contato contato, Endereco endereco) {
         this.id = id;
         this.contato = contato;
