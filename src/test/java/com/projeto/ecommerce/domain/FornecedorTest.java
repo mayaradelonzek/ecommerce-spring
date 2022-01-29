@@ -1,6 +1,7 @@
 package com.projeto.ecommerce.domain;
 
 import com.projeto.ecommerce.infra.exception.DominioInvalido;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,32 @@ class FornecedorTest {
 
         try {
             new Cliente(id, contato, endereco, nomeFantasia, cnpj);
+            fail("Teste deveria ter quebrado");
+        } catch (DominioInvalido ex) {
+            Assertions.assertFalse(ex.getMessage().isEmpty());
+        }
+    }
+
+    @Test
+    public void deveValidarClienteComInfosInvalidas() {
+        Long id = 1L;
+        String nomeFantasia = RandomStringUtils.randomAlphabetic(101);;
+        String cnpj = RandomStringUtils.randomAlphabetic(21);;
+        String email = RandomStringUtils.randomAlphabetic(101);
+        String telefone = RandomStringUtils.randomAlphabetic(21);
+        String rua = RandomStringUtils.randomAlphabetic(101);
+        String numero = RandomStringUtils.randomAlphabetic(7);
+        String bairro = RandomStringUtils.randomAlphabetic(51);
+        String complemento = RandomStringUtils.randomAlphabetic(121);
+        String cep = RandomStringUtils.randomAlphabetic(11);
+        String cidade = RandomStringUtils.randomAlphabetic(51);
+        String estado = RandomStringUtils.randomAlphabetic(3);
+
+        Contato contato = new Contato(email, telefone);
+        Endereco endereco = new Endereco(rua, numero, bairro, complemento, cep, cidade, estado);
+
+        try {
+            new Fornecedor(id, contato, endereco, nomeFantasia, cnpj);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
             Assertions.assertFalse(ex.getMessage().isEmpty());

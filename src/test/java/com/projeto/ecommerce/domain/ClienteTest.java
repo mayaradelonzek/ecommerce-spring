@@ -1,6 +1,7 @@
 package com.projeto.ecommerce.domain;
 
 import com.projeto.ecommerce.infra.exception.DominioInvalido;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -58,17 +59,41 @@ class ClienteTest {
         }
     }
 
-    //TODO TERMINAR ESSE TESTE
-//    public void deveValidarClienteComInfosInvalidas() {
+    @Test
+    public void deveValidarClienteComInfosInvalidas() {
+        Long id = 1L;
+        String nome = RandomStringUtils.randomAlphabetic(101);;
+        String cpf = RandomStringUtils.randomAlphabetic(21);;
+        String email = RandomStringUtils.randomAlphabetic(101);
+        String telefone = RandomStringUtils.randomAlphabetic(21);
+        String rua = RandomStringUtils.randomAlphabetic(101);
+        String numero = RandomStringUtils.randomAlphabetic(7);
+        String bairro = RandomStringUtils.randomAlphabetic(51);
+        String complemento = RandomStringUtils.randomAlphabetic(121);
+        String cep = RandomStringUtils.randomAlphabetic(11);
+        String cidade = RandomStringUtils.randomAlphabetic(51);
+        String estado = RandomStringUtils.randomAlphabetic(3);
 
-//        String generatedString = RandomStringUtils.randomAlphabetic(10);
-//        try {
-//            Long id = null;
-//            String nome = null;
-//            String cpf = "";
-//            Contato contato = null;
-//            Endereco endereco = null;
-//        }
-//    }
+        Contato contato = new Contato(email, telefone);
+        Endereco endereco = new Endereco(rua, numero, bairro, complemento, cep, cidade, estado);
 
+        try {
+            new Cliente(id, contato, endereco, nome, cpf);
+            fail("Teste deveria ter quebrado");
+        } catch (DominioInvalido ex) {
+              Assertions.assertFalse(ex.getMessage().isEmpty());
+//            Assertions.assertEquals("[endereco.cep : Cep precisa ter no máximo 10 caracteres, " +
+//                    "endereco.bairro : Bairro precisa ter no máximo 50 caracteres, " +
+//                    "endereco.numero : Número precisa ter no máximo 6 caracteres, " +
+//                    "cpf : CPF precisa ter no máximo 20 caracteres, " +
+//                    "contato.telefone : Telefone precisa ter no máximo 20 caracteres, " +
+//                    "endereco.rua : Rua precisa ter no máximo 100 caracteres, " +
+//                    "nome : Nome precisa ter no máximo 100 caracteres, " +
+//                    "contato.email : E-mail precisa ter no máximo 100 caracteres, " +
+//                    "endereco.cidade : Cidade precisa ter no máximo 50 caracteres, " +
+//                    "endereco.estado : Estado precisa ter no máximo 2 caracteres, " +
+//                    "endereco.complemento : Complemento precisa ter no máximo 120 caracteres]",
+//                    ex.getMessage());
+        }
+    }
 }
