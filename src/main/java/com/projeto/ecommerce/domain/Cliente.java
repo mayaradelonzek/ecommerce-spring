@@ -18,10 +18,11 @@ public class Cliente extends Pessoa {
     @Size(max = 20, message = "CPF precisa ter no máximo 20 caracteres")
     private String cpf;
 
-    public Cliente(int id, Contato contato, Endereco endereco, String nome, String cpf) {
+    public Cliente(Long id, Contato contato, Endereco endereco, String nome, String cpf) {
         super(id, contato, endereco);
         this.nome = nome;
         this.cpf = cpf;
+        isValid();
     }
 
     public String getNome() {

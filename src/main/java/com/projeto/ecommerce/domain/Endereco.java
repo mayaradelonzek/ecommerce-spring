@@ -50,7 +50,6 @@ public class Endereco {
         this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
-        //TODO isValid();
     }
 
     public String getRua() {
