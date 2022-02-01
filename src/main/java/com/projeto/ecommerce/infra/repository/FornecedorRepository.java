@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FornecedorRepository extends JpaRepository {
+public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 
-    @Query("SELECT f FROM Fornecedor f WHERE f.nome LIKE %:nome%")
-    public List<Fornecedor> buscar(@Param("nome") String nome);
+    @Query("SELECT f FROM Fornecedor f WHERE f.nomeFantasia LIKE %:nome%")
+    public List<Fornecedor> buscar(@Param("nome") String nomeFantasia);
 
 }
