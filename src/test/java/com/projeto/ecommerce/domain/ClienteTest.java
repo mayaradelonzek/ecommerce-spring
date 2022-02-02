@@ -62,8 +62,8 @@ class ClienteTest {
     @Test
     public void deveValidarClienteComInfosInvalidas() {
         Long id = 1L;
-        String nome = RandomStringUtils.randomAlphabetic(101);;
-        String cpf = RandomStringUtils.randomAlphabetic(21);;
+        String nome = RandomStringUtils.randomAlphabetic(101);
+        String cpf = RandomStringUtils.randomAlphabetic(21);
         String email = RandomStringUtils.randomAlphabetic(101);
         String telefone = RandomStringUtils.randomAlphabetic(21);
         String rua = RandomStringUtils.randomAlphabetic(101);

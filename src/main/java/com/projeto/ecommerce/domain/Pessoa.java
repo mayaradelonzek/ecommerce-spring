@@ -1,9 +1,6 @@
 package com.projeto.ecommerce.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -15,6 +12,7 @@ public abstract class Pessoa extends Entidade {
     protected Long id;
 
     @Valid
+//    @Embedded antigamente precisava
     @NotNull(message = "Contato é obrigatório")
     protected Contato contato;
 

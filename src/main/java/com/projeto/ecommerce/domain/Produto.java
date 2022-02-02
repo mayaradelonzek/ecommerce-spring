@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Produto {
+public class Produto extends Entidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,7 @@ public class Produto {
         this.nome = nome;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
+        isValid();
     }
 
     public Long getId() {
