@@ -5,10 +5,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Pessoa extends Entidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Pessoa_Id")
     protected Long id;
 
     @Valid

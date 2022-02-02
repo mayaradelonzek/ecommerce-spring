@@ -13,6 +13,7 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Pedido_Id")
     private Long id;
 
     @NotNull(message = "Data da compra é obrigatório")
@@ -21,13 +22,13 @@ public class Pedido {
 
     @Valid
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "Pessoa_Id", updatable = false, insertable = false)
     @NotNull(message = "Fornecedor é obrigatório")
     private Fornecedor fornecedor;
 
     @Valid
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "Pessoa_Id", updatable = false, insertable = false)
     @NotNull(message = "Cliente é obrigatório")
     private Cliente cliente;
 

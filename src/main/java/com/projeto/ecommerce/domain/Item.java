@@ -10,22 +10,25 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Item_Id")
     private Long id;
 
     @Valid
+    @ManyToOne
+    @JoinColumn(name = "Produto_Id")
     @NotNull(message = "Produto é obrigatório")
     @NotEmpty(message = "Produto é obrigatório")
     private Produto produto;
+
+    @ManyToOne
+    @JoinColumn(name = "Pedido_Id")
+    private Pedido pedido;
 
     @NotNull(message = "Quantidade é obrigatório")
     @NotEmpty(message = "Quantidade é obrigatório")
     private Integer quantidade;
 
     private Double valorTotalItem;
-
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Pedido pedido;
 
     @Deprecated
     public Item() {
