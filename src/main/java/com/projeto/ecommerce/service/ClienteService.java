@@ -22,6 +22,10 @@ public class ClienteService {
         return clienteRepository.buscar(nome);
     }
 
+    public Cliente buscarPorNome (String nome) {
+        return clienteRepository.buscarPorNome(nome);
+    }
+
     //TODO VALIDAR EXISTENCIA ANTES DE SALVAR
     public void salvar(Cliente cliente) {
         clienteRepository.save(cliente);
