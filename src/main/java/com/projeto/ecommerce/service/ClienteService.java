@@ -27,8 +27,8 @@ public class ClienteService {
     }
 
     //TODO VALIDAR EXISTENCIA ANTES DE SALVAR
-    public void salvar(Cliente cliente) {
-        clienteRepository.save(cliente);
+    public Cliente salvar(Cliente cliente) {
+        return clienteRepository.save(cliente);
     }
 
 

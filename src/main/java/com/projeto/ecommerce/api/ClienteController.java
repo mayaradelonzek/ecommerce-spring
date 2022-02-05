@@ -28,7 +28,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public void criar(@RequestBody @Valid Cliente cliente) {
-        clienteService.salvar(cliente);
+    public Cliente criar(@RequestBody @Valid Cliente cliente) {
+        return clienteService.salvar(cliente);
     }
 }
