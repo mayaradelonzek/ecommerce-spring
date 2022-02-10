@@ -47,6 +47,4 @@ public class ClienteController {
     public void deletar(@PathVariable("id") Long id) {
         clienteService.delete(id);
     }
-
-
 }

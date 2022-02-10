@@ -1,6 +1,5 @@
 package com.projeto.ecommerce.infra.repository;
 
-import com.projeto.ecommerce.domain.Cliente;
 import com.projeto.ecommerce.domain.Fornecedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

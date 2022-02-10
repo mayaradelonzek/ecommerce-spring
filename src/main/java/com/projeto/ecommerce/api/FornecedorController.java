@@ -1,6 +1,5 @@
 package com.projeto.ecommerce.api;
 
-import com.projeto.ecommerce.domain.Cliente;
 import com.projeto.ecommerce.domain.Fornecedor;
 import com.projeto.ecommerce.service.FornecedorService;
 import org.springframework.web.bind.annotation.*;
