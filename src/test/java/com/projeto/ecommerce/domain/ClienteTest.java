@@ -17,7 +17,7 @@ class ClienteTest {
         Contato contato = new Contato("teste@teste.com", "3378-0000");
         Endereco endereco = new Endereco("Rua x", "20", "Bairro x", "Complemento y", "9000000", "Porto Alegre", "RS");
 
-        var cliente = new Cliente(id, contato, endereco, nome, cpf);
+        var cliente = new Cliente(contato, endereco, id, nome, cpf);
 
         Assertions.assertEquals(cliente.getId(), id);
         Assertions.assertEquals(cliente.getNome(), nome);
@@ -35,7 +35,7 @@ class ClienteTest {
         Endereco endereco = null;
 
         try {
-            new Cliente(id, contato, endereco, nome, cpf);
+            new Cliente(contato, endereco, id, nome, cpf);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
             String mensagemEsperada = "[nome : Nome é obrigatório, contato : Contato é obrigatório, cpf : CPF é obrigatório, endereco : Endereco é obrigatório]";
@@ -52,7 +52,7 @@ class ClienteTest {
         Endereco endereco = new Endereco(null, null, null, null, null, null, null);
 
         try {
-            new Cliente(id, contato, endereco, nome, cpf);
+            new Cliente(contato, endereco, id, nome, cpf);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
             Assertions.assertFalse(ex.getMessage().isEmpty());
@@ -78,7 +78,7 @@ class ClienteTest {
         Endereco endereco = new Endereco(rua, numero, bairro, complemento, cep, cidade, estado);
 
         try {
-            new Cliente(id, contato, endereco, nome, cpf);
+            new Cliente(contato, endereco, id, nome, cpf);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
               Assertions.assertFalse(ex.getMessage().isEmpty());

@@ -17,7 +17,7 @@ class FornecedorTest {
         Contato contato = new Contato("teste@teste.com", "3378-0000");
         Endereco endereco = new Endereco("Rua x", "20", "Bairro x", "Complemento y", "9000000", "Porto Alegre", "RS");
 
-        var fornecedor = new Fornecedor(id, contato, endereco, nomeFantasia, cnpj);
+        var fornecedor = new Fornecedor (contato, endereco, id, nomeFantasia, cnpj);
 
         Assertions.assertEquals(fornecedor.getId(), id);
         Assertions.assertEquals(fornecedor.getNomeFantasia(), nomeFantasia);
@@ -35,7 +35,7 @@ class FornecedorTest {
         Endereco endereco = null;
 
         try {
-            new Fornecedor(id, contato, endereco, nomeFantasia, cnpj);
+            new Fornecedor(contato, endereco, id, nomeFantasia, cnpj);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
             String mensagemEsperada = "[nomeFantasia : Nome fantasia é obrigatório, contato : Contato é obrigatório, endereco : Endereco é obrigatório, cnpj : CNPJ é obrigatório]";
@@ -52,7 +52,7 @@ class FornecedorTest {
         Endereco endereco = new Endereco(null, null, null, null, null, null, null);
 
         try {
-            new Cliente(id, contato, endereco, nomeFantasia, cnpj);
+            new Cliente(contato, endereco, id, nomeFantasia, cnpj);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
             Assertions.assertFalse(ex.getMessage().isEmpty());
@@ -78,11 +78,10 @@ class FornecedorTest {
         Endereco endereco = new Endereco(rua, numero, bairro, complemento, cep, cidade, estado);
 
         try {
-            new Fornecedor(id, contato, endereco, nomeFantasia, cnpj);
+            new Fornecedor(contato, endereco, id, nomeFantasia, cnpj);
             fail("Teste deveria ter quebrado");
         } catch (DominioInvalido ex) {
             Assertions.assertFalse(ex.getMessage().isEmpty());
         }
     }
-
 }

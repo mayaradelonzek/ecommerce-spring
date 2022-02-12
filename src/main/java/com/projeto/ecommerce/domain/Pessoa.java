@@ -8,11 +8,6 @@ import javax.validation.constraints.NotNull;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Pessoa extends Entidade {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Pessoa_Id")
-    protected Long id;
-
     @Valid
 //    @Embedded antigamente precisava
     @NotNull(message = "Contato é obrigatório")
@@ -26,14 +21,9 @@ public abstract class Pessoa extends Entidade {
     public Pessoa() {
     }
 
-    public Pessoa(Long id, Contato contato, Endereco endereco) {
-        this.id = id;
+    public Pessoa(Contato contato, Endereco endereco) {
         this.contato = contato;
         this.endereco = endereco;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Contato getContato() {

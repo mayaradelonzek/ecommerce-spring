@@ -1,12 +1,17 @@
 package com.projeto.ecommerce.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Cliente extends Pessoa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Cliente_Id")
+    protected Long id;
 
     @NotNull(message = "Nome é obrigatório")
     @NotEmpty(message = "Nome é obrigatório")
@@ -22,11 +27,16 @@ public class Cliente extends Pessoa {
     public Cliente() {
     }
 
-    public Cliente(Long id, Contato contato, Endereco endereco, String nome, String cpf) {
-        super(id, contato, endereco);
+    public Cliente(Contato contato, Endereco endereco, Long id, String nome, String cpf) {
+        super(contato, endereco);
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         isValid();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {

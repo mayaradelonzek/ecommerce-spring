@@ -19,13 +19,13 @@ public class Pedido {
 
     @Valid
     @ManyToOne
-    @JoinColumn(name = "Pessoa_Id", updatable = false, insertable = false)
+    @JoinColumn(name = "Fornecedor_Id", updatable = false, insertable = false)
     @NotNull(message = "Fornecedor é obrigatório")
     private Fornecedor fornecedor;
 
     @Valid
     @ManyToOne
-    @JoinColumn(name = "Pessoa_Id", updatable = false, insertable = false)
+    @JoinColumn(name = "Cliente_Id", updatable = false, insertable = false)
     @NotNull(message = "Cliente é obrigatório")
     private Cliente cliente;
 
