@@ -33,7 +33,7 @@ public class FornecedorService {
     }
 
     public Fornecedor buscarPorId(Long id) {
-        return fornecedorRepository.getById(id);
+        return fornecedorRepository.findById(id).get();
     }
 
     public void delete(Long id) {

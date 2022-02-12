@@ -37,7 +37,7 @@ public class ClienteService {
     }
 
     public Cliente buscarPorId(Long id) {
-        return clienteRepository.getById(id);
+        return clienteRepository.findById(id).get();
     }
 
     public void delete(Long id) {

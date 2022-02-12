@@ -33,7 +33,7 @@ public class ProdutoService {
     }
 
     public Produto buscarPorId(Long id) {
-        return produtoRepository.getById(id);
+        return produtoRepository.findById(id).get();
     }
 
     public void delete(Long id) {
