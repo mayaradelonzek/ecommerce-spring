@@ -17,7 +17,6 @@ public class Item extends Entidade {
     @ManyToOne
     @JoinColumn(name = "Produto_Id")
     @NotNull(message = "Produto é obrigatório")
-    @NotEmpty(message = "Produto é obrigatório")
     private Produto produto;
 
     @ManyToOne
