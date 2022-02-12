@@ -2,7 +2,6 @@ package com.projeto.ecommerce.domain;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,8 +15,6 @@ public class Pedido {
     @Column(name = "Pedido_Id")
     private Long id;
 
-    @NotNull(message = "Data da compra é obrigatório")
-    @NotEmpty(message = "Data da compra é obrigatório")
     private LocalDateTime dataCompra;
 
     @Valid
@@ -32,16 +29,16 @@ public class Pedido {
     @NotNull(message = "Cliente é obrigatório")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = {CascadeType.ALL})
     private List<Item> itens = new ArrayList<>();
 
     private Double valorFrete;
 
     private Double valorTotal;
 
-    public Pedido(Long id, LocalDateTime dataCompra, Fornecedor fornecedor, Cliente cliente, Item item, Double valorFrete) {
+    public Pedido(Long id, Fornecedor fornecedor, Cliente cliente, Item item, Double valorFrete) {
         this.id = id;
-        this.dataCompra = dataCompra;
+        this.dataCompra = LocalDateTime.now();
         this.fornecedor = fornecedor;
         this.cliente = cliente;
         this.valorFrete = valorFrete;
@@ -88,6 +85,7 @@ public class Pedido {
         if (item == null) {
             return;
         }
+        item.setPedido(this);
         this.itens.add(item);
     }
 }

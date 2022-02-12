@@ -34,8 +34,8 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Cliente> buscarPorId(@PathVariable("id") Long id) {
-        return clienteService.findById(id);
+    public Cliente buscarPorId(@PathVariable("id") Long id) {
+        return clienteService.buscarPorId(id);
     }
 
     @PostMapping

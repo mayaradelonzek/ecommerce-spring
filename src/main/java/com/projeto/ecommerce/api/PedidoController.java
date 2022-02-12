@@ -2,6 +2,7 @@ package com.projeto.ecommerce.api;
 
 import com.projeto.ecommerce.domain.Pedido;
 import com.projeto.ecommerce.service.PedidoService;
+import com.projeto.ecommerce.service.dto.PedidoDTO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,12 +25,12 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Pedido> buscarPorId(@PathVariable("id") Long id) {
+    public Pedido buscarPorId(@PathVariable("id") Long id) {
         return pedidoService.findById(id);
     }
 
     @PostMapping
-    public Pedido salvar(@RequestBody @Valid Pedido pedido) {
+    public Pedido salvar(@RequestBody @Valid PedidoDTO pedido) {
         return pedidoService.salvar(pedido);
     }
 

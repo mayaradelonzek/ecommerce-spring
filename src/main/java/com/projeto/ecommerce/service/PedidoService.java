@@ -1,23 +1,40 @@
 package com.projeto.ecommerce.service;
 
-import com.projeto.ecommerce.domain.Pedido;
+import com.projeto.ecommerce.domain.*;
 import com.projeto.ecommerce.infra.repository.PedidoRepository;
+import com.projeto.ecommerce.service.dto.ItensDTO;
+import com.projeto.ecommerce.service.dto.PedidoDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PedidoService {
 
-    public PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
+    private FornecedorService fornecedorService;
+    private ClienteService clienteService;
+    private ProdutoService produtoService;
 
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, FornecedorService fornecedorService, ClienteService clienteService, ProdutoService produtoService) {
         this.pedidoRepository = pedidoRepository;
+        this.fornecedorService = fornecedorService;
+        this.clienteService = clienteService;
+        this.produtoService = produtoService;
     }
 
     //TODO VALIDAR EXISTENCIA ANTES DE SALVAR
-    public Pedido salvar(Pedido pedido) {
+    public Pedido salvar(PedidoDTO novoPedido) {
+        Fornecedor fornecedor = fornecedorService.buscarPorId(novoPedido.getFornecedor());
+        Cliente cliente = clienteService.buscarPorId(novoPedido.getCliente());
+        Double valorFrete = novoPedido.getValorFrete();
+        Pedido pedido = new Pedido(null, fornecedor, cliente, null, valorFrete);
+
+        for (ItensDTO itemDto: novoPedido.getItens()) {
+            Produto produto = produtoService.buscarPorId(itemDto.getProduto());
+            Item item = new Item(produto, itemDto.getQuantidade());
+            pedido.adicionarItem(item);
+        }
         return pedidoRepository.save(pedido);
     }
 
@@ -25,8 +42,8 @@ public class PedidoService {
         return pedidoRepository.findAll();
     }
 
-    public Optional<Pedido> findById(Long id) {
-        return pedidoRepository.findById(id);
+    public Pedido findById(Long id) {
+        return pedidoRepository.getById(id);
     }
 
     public void delete(Long id) {

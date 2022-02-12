@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Item {
+public class Item extends Entidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,6 @@ public class Item {
     private Pedido pedido;
 
     @NotNull(message = "Quantidade é obrigatório")
-    @NotEmpty(message = "Quantidade é obrigatório")
     private Integer quantidade;
 
     private Double valorTotalItem;
@@ -34,15 +33,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long id, Produto produto, Integer quantidade, Double valorTotalItem) {
-        this.id = id;
+    public Item(Produto produto, Integer quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
-        this.valorTotalItem = getValorTotalItem();
-    }
-
-    public Long getId() {
-        return id;
+        isValid();
     }
 
     public Produto getProduto() {
@@ -54,6 +48,10 @@ public class Item {
     }
 
     public Double getValorTotalItem() {
-        return valorTotalItem = produto.getValorUnitario() * quantidade;
+        return produto.getValorUnitario() * quantidade;
+    }
+
+    void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

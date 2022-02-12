@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
@@ -24,8 +23,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Produto> buscarPorId(@PathVariable("id") Long id) {
-        return produtoService.findById(id);
+    public Produto buscarPorId(@PathVariable("id") Long id) {
+        return produtoService.buscarPorId(id);
     }
 
     @PostMapping

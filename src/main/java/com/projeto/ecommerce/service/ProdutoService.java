@@ -32,8 +32,8 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Optional<Produto> findById(Long id) {
-        return produtoRepository.findById(id);
+    public Produto buscarPorId(Long id) {
+        return produtoRepository.getById(id);
     }
 
     public void delete(Long id) {
